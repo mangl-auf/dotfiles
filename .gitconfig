@@ -1,0 +1,9 @@
+[user]
+	email = theyscreamstayhere@yandex.ru
+	name = mangl-auf (maybe)
+[core]
+	editor = emacs
+[init]
+	defaultBranch = master
+[merge]
+	conflictStyle = diff3
