@@ -30,7 +30,8 @@ else
 fi
 
 if [[ -z "$STY" ]]; then
-    screen -xRR session_name
+    screen -xRR default_zsh_session
 fi
 
 [ -f "/home/mangl-auf/.ghcup/env" ] && source "/home/mangl-auf/.ghcup/env" # ghcup-env
+export PATH=$(go env GOPATH)/bin:$PATH
