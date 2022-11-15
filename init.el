@@ -163,7 +163,7 @@
       kept-old-versions 2
       version-control t)
 
-(setq create-lockfile nil)
+(setq create-lockfiles nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
