@@ -35,6 +35,7 @@ fi
 
 [ -f "/home/mangl-auf/.ghcup/env" ] && source "/home/mangl-auf/.ghcup/env" # ghcup-env
 export PATH=$(go env GOPATH)/bin:$PATH
+export PATH=/home/mangl-auf/.deno/bin:$PATH
 
 if [ ! -S ~/.ssh/.ssh_auth_sock ]; then
     eval `ssh-agent`

@@ -147,6 +147,9 @@
 
 ;;; adding some hooks
 (add-hook 'dired-mode-hook 'auto-revert-mode)
+(add-hook 'kill-emacs-query-functions
+	  (lambda () (y-or-n-p "Do you really want to exit emacs?"))
+	  'append)
 
 ;;; settings up styles for certain languages
 (setq tab-width 8)
