@@ -1,4 +1,4 @@
-# simpliest vimrc
+" simpliest vimrc
 
 set nocompatible
 set encoding=utf-8
