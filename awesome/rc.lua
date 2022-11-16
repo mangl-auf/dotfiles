@@ -36,7 +36,7 @@ end
 -- }}}
 
 -- {{{ Variable definitions
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. "mytheme.lua")
 
 terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nano"
