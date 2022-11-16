@@ -96,6 +96,9 @@
   :ensure t
   :config (editorconfig-mode t))
 
+(use-package mood-line
+  :ensure t)
+
 (use-package emojify
   :ensure t
   :hook (after-init . global-emojify-mode)
@@ -132,6 +135,7 @@
 (show-paren-mode 1)
 
 (set-frame-font "Iosevka 14" nil t)
+(mood-line-mode)
 
 ;; shit for windows (i hate this platform)
 (if (eq system-type 'windows-nt)
@@ -174,7 +178,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(go-mode doom-themes company-box lsp-mode hydra ivy paredit tuareg markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
+   '(mood-line go-mode doom-themes company-box lsp-mode hydra ivy paredit tuareg markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
