@@ -33,6 +33,8 @@ if [[ -z "$STY" ]]; then
     screen -xRR default_zsh_session
 fi
 
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+
 [ -f "/home/mangl-auf/.ghcup/env" ] && source "/home/mangl-auf/.ghcup/env" # ghcup-env
 export PATH=$(go env GOPATH)/bin:$PATH
 export PATH=/home/mangl-auf/.deno/bin:$PATH
