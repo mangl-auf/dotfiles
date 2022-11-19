@@ -11,5 +11,13 @@ set smartindent
 set shiftwidth=4
 set tabstop=4
 
+set ignorecase
+set smartcase
+set hlsearch
+
 set number
-colorscheme habamax 
+
+set t_Co=88
+colorscheme desert
+
+highlight EndOfBuffer ctermfg=black ctermbg=black
