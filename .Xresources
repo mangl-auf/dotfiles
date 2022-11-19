@@ -1,0 +1,48 @@
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: 1
+
+URxvt.font: xft:Ubuntu Mono:size=16
+URxvt.letterSpace: -1
+
+URxvt.scrollBar: false
+URxvt*scrollWithBuffer: true
+
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+URxvt*skipBuiltinGlyphs: true
+
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!! colorschema (One Dark theme)
+URxvt*background: #282c34
+URxvt*foreground: #abb2bf
+
+URxvt*color0: #282c34
+! URxvt*color8:
+
+URxvt*color1: #e06c75
+URxvt*color9: #e06c75
+
+URxvt*color2: #98c379
+URxvt*color10: #98c379
+
+URxvt*color3: #e5c07b
+URxvt*color11: #e5c07b
+
+URxvt*color4: #61afef
+URxvt*color12: #61afef
+
+URxvt*color5: #c678dd
+URxvt*color13: #c678dd
+
+URxvt*color6: #56b6c2
+URxvt*color14: #56b6c2
+
+URxvt*color7: #abb2bf
+! URxvt*color15:

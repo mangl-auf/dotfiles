@@ -1,0 +1,8 @@
+# most important part
+e cfg.fortunes.type = nsfw
+
+e scr.utf8 = true
+e scr.color = 1
+eco zenburn
+
+e bin.cache = true
