@@ -17,6 +17,7 @@ HIST_STAMPS="dd.mm.yyyy"
 plugins=(
     git
     screen
+    golang
     
     zsh-syntax-highlighting
 )
@@ -38,8 +39,10 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 [ -f "/home/mangl-auf/.ghcup/env" ] && source "/home/mangl-auf/.ghcup/env" # ghcup-env
 export PATH=$(go env GOPATH)/bin:$PATH
 export PATH=/home/mangl-auf/.deno/bin:$PATH
+export PATH=/home/mangl-auf/.local/bin:$PATH
 
 if [ ! -S ~/.ssh/.ssh_auth_sock ]; then
+    echo -n "(ssh-agent): "
     eval `ssh-agent`
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/.ssh_auth_sock
 fi
