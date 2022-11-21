@@ -21,3 +21,7 @@ set t_Co=88
 colorscheme desert
 
 highlight EndOfBuffer ctermfg=black ctermbg=black
+
+" if vim is manpager, then pressing on q will quit vim
+" otherwise q works as usual (write marco)
+nnoremap <expr> q &ma ? "q" : ":q\<CR>"
