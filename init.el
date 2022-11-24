@@ -83,6 +83,7 @@
   (rust-mode . lsp)
   (typescript-mode . lsp)
   (go-mode . lsp)
+  (tuareg-mode . lsp)
   :commands lsp)
 
 (use-package ivy
