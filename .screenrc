@@ -13,7 +13,8 @@ hardstatus alwayslastline
 hardstatus string '%{= kG}[screen][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W} %c %{g}]'
 
 termcapinfo xterm*|alacritty*|rxvt*|kterm*|Eterm* ti@:te@
-term screen-256color
+#truecolor on
+#term screen-256color
 
 bind c screen 1
 bind ^c screen 1

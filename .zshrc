@@ -30,16 +30,14 @@ else
     export EDITOR="vim"
 fi
 
-if [[ -z "$STY" ]]; then
-    screen -xRR default_zsh_session
-fi
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session;}
 
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
-[ -f "/home/mangl-auf/.ghcup/env" ] && source "/home/mangl-auf/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 export PATH=$(go env GOPATH)/bin:$PATH
-export PATH=/home/mangl-auf/.deno/bin:$PATH
-export PATH=/home/mangl-auf/.local/bin:$PATH
+export PATH=$HOME/.deno/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 if [ ! -S ~/.ssh/.ssh_auth_sock ]; then
     echo -n "(ssh-agent): "
@@ -47,3 +45,7 @@ if [ ! -S ~/.ssh/.ssh_auth_sock ]; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/.ssh_auth_sock
 fi
 export SSH_AUTH_SOCK=~/.ssh/.ssh_auth_sock
+
+# opam configuration
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+export PATH=$PATH:/home/mangl-auf/.opam/default/bin
