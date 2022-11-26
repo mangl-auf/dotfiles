@@ -136,7 +136,10 @@
 
 (show-paren-mode 1)
 
-(set-frame-font "Iosevka 14" nil t)
+(if (daemonp)
+  (add-to-list 'default-frame-alist '(font . "Iosevka 14"))
+  (set-frame-font "Iosevka 14" nil t))
+
 (mood-line-mode)
 
 ;; shit for windows (i hate this platform)
