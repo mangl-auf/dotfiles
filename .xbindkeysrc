@@ -1,4 +1,4 @@
-"emacsclient -c"
+"emacsclient -c --eval '(calc)'"
 	XF86Calculator
 	
 "pactl set-sink-volume @DEFAULT_SINK@ +1000"
