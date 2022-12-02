@@ -15,7 +15,7 @@ set ignorecase
 set smartcase
 set hlsearch
 
-set number
+set rnu
 
 set t_Co=88
 colorscheme desert
