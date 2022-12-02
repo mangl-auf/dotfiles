@@ -1,7 +1,9 @@
 Xft.dpi: 96
-Xft.antialias: true
+Xft.antialias: 1
 Xft.rgba: rgb
 Xft.hinting: 1
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
 
 URxvt.font: xft:Ubuntu Mono:size=16
 URxvt.letterSpace: -1
@@ -19,7 +21,7 @@ URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
-URxvt.perl-ext: default, url-select
+URxvt.perl-ext: default,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: firefox
 URxvt.url-select.underline: true
