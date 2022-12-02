@@ -16,7 +16,7 @@
   :config
   (setq doom-themes-enable-bold t)
   (setq doom-themes-enable-italic nil)
-  (load-theme 'doom-one t))
+  (load-theme 'doom-solarized-dark-high-contrast t))
 
 (use-package ansi-color
   :init
@@ -43,6 +43,7 @@
   :hook
   (emacs-lisp-mode . enable-paredit-mode)
   (lisp-mode . enable-paredit-mode)
+  (clojure-mode . enable-paredit-mode)
   (scheme-mode . enable-paredit-mode)
   (eval-expression-minibuffer-setup . enable-paredit-mode))
 
@@ -55,7 +56,8 @@
   :config (projectile-mode t))
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :bind ("C-c C-g" . magit))
 
 (use-package company
   :ensure t
@@ -84,6 +86,7 @@
   (typescript-mode . lsp)
   (go-mode . lsp)
   (tuareg-mode . lsp)
+  (clojure-mode . lsp)
   :commands lsp)
 
 (use-package ivy
@@ -93,9 +96,38 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t))
 
+(use-package multiple-cursors
+  :ensure t
+  :config
+  :bind (("M-SPC" . set-rectangular-region-anchor)
+	 ("C-S-c C-S-c" . mc/edit-lines)
+	 ("C->" . mc/mark-next-like-this)
+	 ("C-:" . mc/skip-to-previous-like-this)
+	 ("C-;" . mc/skip-to-next-like-this)
+	 ("C-S-c C-<" . mc/mark-all-like-this)))
+
+(use-package tex
+  :ensure auctex)
+
+(use-package auctex-latexmk
+  :ensure t)
+
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install)
+  (setq pdf-view-display-size 'fit-width)
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+  (add-hook 'pdf-view-mode-hook (lambda ()
+				  (linum-mode -1)
+				  (display-line-numbers-mode -1))))
+ 
 (use-package editorconfig
   :ensure t
   :config (editorconfig-mode t))
+
+(use-package cider
+  :ensure t)
 
 (use-package mood-line
   :ensure t)
@@ -118,6 +150,7 @@
 (use-package tuareg :ensure t) ;; ocaml mode
 (use-package go-mode :ensure t)
 (use-package git-modes :ensure t)
+(use-package clojure-mode :ensure t)
 ;;; end requires
 
 ;;; primary settings
@@ -132,7 +165,7 @@
 
 (column-number-mode 1)
 (setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode)
+(global-display-line-numbers-mode 1)
 
 (show-paren-mode 1)
 
@@ -182,8 +215,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" default))
  '(package-selected-packages
-   '(git-modes mood-line go-mode doom-themes company-box lsp-mode hydra ivy paredit tuareg markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
+   '(cider clojure-mode cmake-mode auctex-latexmk tex auctex pdftools pdf-tools multiple-cursors git-modes mood-line go-mode doom-themes company-box lsp-mode hydra ivy paredit tuareg markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
