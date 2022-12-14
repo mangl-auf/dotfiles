@@ -16,7 +16,7 @@
   :config
   (setq doom-themes-enable-bold t)
   (setq doom-themes-enable-italic nil)
-  (load-theme 'doom-solarized-dark-high-contrast t))
+  (load-theme 'doom-solarized-dark t))
 
 (use-package ansi-color
   :init
@@ -73,6 +73,9 @@
   :ensure t
   :hook (company-mode . company-box-mode))
 
+(use-package restclient
+  :ensure t)
+
 (use-package lsp-mode
   :ensure t
   :init
@@ -80,6 +83,8 @@
   (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-lens-enable nil)
   (setq lsp-diagnostics-provider :none)
+  (setq lsp-gopls-server-path "~/go/bin/gopls")
+  (setq lsp-pylsp-server-path "~/.local/bin/pylsp")
   :hook
   (python-mode . lsp)
   (rust-mode . lsp)
@@ -87,6 +92,7 @@
   (go-mode . lsp)
   (tuareg-mode . lsp)
   (clojure-mode . lsp)
+  (elixir-mode . lsp)
   :commands lsp)
 
 (use-package ivy
@@ -105,6 +111,13 @@
 	 ("C-:" . mc/skip-to-previous-like-this)
 	 ("C-;" . mc/skip-to-next-like-this)
 	 ("C-S-c C-<" . mc/mark-all-like-this)))
+
+(use-package emms
+  :ensure t
+  :config
+  (setq emms-show-format "Playing: %s")
+  (emms-all)
+  (emms-default-players))
 
 (use-package tex
   :ensure auctex)
@@ -151,6 +164,8 @@
 (use-package go-mode :ensure t)
 (use-package git-modes :ensure t)
 (use-package clojure-mode :ensure t)
+(use-package elixir-mode :ensure t)
+(use-package yaml-mode :ensure t)
 ;;; end requires
 
 ;;; primary settings
@@ -217,8 +232,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" default))
+ '(org-agenda-files
+   '("/home/mangl-auf/org/ipod-thinkings.org" "/home/mangl-auf/org/project-ideas.org"))
  '(package-selected-packages
-   '(cider clojure-mode cmake-mode auctex-latexmk tex auctex pdftools pdf-tools multiple-cursors git-modes mood-line go-mode doom-themes company-box lsp-mode hydra ivy paredit tuareg markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
+   '(yaml-mode restclient elixir-mode emms-setup emms cider clojure-mode cmake-mode auctex-latexmk tex auctex pdftools pdf-tools multiple-cursors git-modes mood-line go-mode doom-themes company-box lsp-mode hydra ivy paredit tuareg markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
