@@ -76,6 +76,11 @@
 (use-package restclient
   :ensure t)
 
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1))
+
 (use-package lsp-mode
   :ensure t
   :init
@@ -86,13 +91,15 @@
   (setq lsp-gopls-server-path "~/go/bin/gopls")
   (setq lsp-pylsp-server-path "~/.local/bin/pylsp")
   :hook
-  (python-mode . lsp)
-  (rust-mode . lsp)
+  (python-mode	   . lsp)
+  (rust-mode	   . lsp)
   (typescript-mode . lsp)
-  (go-mode . lsp)
-  (tuareg-mode . lsp)
-  (clojure-mode . lsp)
-  (elixir-mode . lsp)
+  (go-mode	   . lsp)
+  (tuareg-mode	   . lsp)
+  (clojure-mode	   . lsp)
+  (elixir-mode	   . lsp)
+  (html-mode	   . lsp)
+  (yaml-mode	   . lsp)
   :commands lsp)
 
 (use-package ivy
@@ -116,6 +123,7 @@
   :ensure t
   :config
   (setq emms-show-format "Playing: %s")
+  (setq emms-source-file-default-directory "~/LeMusic")
   (emms-all)
   (emms-default-players))
 
@@ -166,6 +174,23 @@
 (use-package clojure-mode :ensure t)
 (use-package elixir-mode :ensure t)
 (use-package yaml-mode :ensure t)
+(use-package meson-mode :ensure t)
+
+(use-package org-roam
+  :ensure t)
+
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(use-package org-appear
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook 'org-appear-mode)
+  (setq org-appear-autolinks t)
+  (setq org-appear-autokeywords t))
+
 ;;; end requires
 
 ;;; primary settings
@@ -185,8 +210,8 @@
 (show-paren-mode 1)
 
 (if (daemonp)
-  (add-to-list 'default-frame-alist '(font . "Iosevka 14"))
-  (set-frame-font "Iosevka 14" nil t))
+  (add-to-list 'default-frame-alist '(font . "Hack 14"))
+  (set-frame-font "Hack 14" nil t))
 
 (mood-line-mode)
 
@@ -215,6 +240,8 @@
 (setq c-default-style "linux"
       c-basic-offset 8)
 
+(c-set-offset 'innamespace 0)
+
 ;;; setting up backups to be in the certain directory
 (setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
 (setq backup-by-copying t)
@@ -224,6 +251,12 @@
       version-control t)
 
 (setq create-lockfiles nil)
+
+(setq-default org-display-custom-times t)
+(setq org-time-stamp-custom-formats '("<%a %d.%m.%Y>" . "<%a %d.%m.%Y %H:%M>"))
+(setq org-hide-emphasis-markers t)
+(setq org-hidden-keywords '(title author date email))
+(setq org-startup-folded t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -235,7 +268,7 @@
  '(org-agenda-files
    '("/home/mangl-auf/org/ipod-thinkings.org" "/home/mangl-auf/org/project-ideas.org"))
  '(package-selected-packages
-   '(yaml-mode restclient elixir-mode emms-setup emms cider clojure-mode cmake-mode auctex-latexmk tex auctex pdftools pdf-tools multiple-cursors git-modes mood-line go-mode doom-themes company-box lsp-mode hydra ivy paredit tuareg markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
+   '(org-roam org-appear org-bullets meson-mode yasnippet yaml-mode restclient elixir-mode emms-setup emms cider clojure-mode cmake-mode auctex-latexmk tex auctex pdftools pdf-tools multiple-cursors git-modes mood-line go-mode doom-themes company-box lsp-mode hydra ivy paredit tuareg markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
