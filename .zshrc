@@ -46,6 +46,8 @@ if [ ! -S ~/.ssh/.ssh_auth_sock ]; then
 fi
 export SSH_AUTH_SOCK=~/.ssh/.ssh_auth_sock
 
+alias ec="emacsclient -c"
+
 # opam configuration
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 export PATH=$PATH:/home/mangl-auf/.opam/default/bin
