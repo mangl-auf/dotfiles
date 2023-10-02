@@ -1,4 +1,3 @@
-;; speeds up emacs startup
 (setq gc-cons-threshold most-positive-fixnum)
 (add-hook 'emacs-startup-hook
 	  (lambda ()
@@ -7,48 +6,23 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-
-;;; requires
 (package-install 'use-package)
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t)
-  (setq doom-themes-enable-italic nil)
-  (load-theme 'doom-solarized-dark t))
+(when (not package-archive-contents)
+  (package-refresh-contents))
 
-(use-package ansi-color
-  :init
-  (defun colorize-compilation-buffer ()
-    (let ((inhibit-read-only t))
-      (ansi-color-apply-on-region (point-min) (point-max))))
-  :hook
-  (compilation-filter . colorize-compilation-buffer))
+(load "~/.emacs.d/emacs/appearance.el")
+(load "~/.emacs.d/emacs/latex.el")
+(load "~/.emacs.d/emacs/org.el")
+(load "~/.emacs.d/emacs/languages.el")
+(load "~/.emacs.d/emacs/lisp.el")
+(load "~/.emacs.d/emacs/utils.el")
+(load "~/.emacs.d/emacs/win-related.el")
 
-(use-package ido
-  :ensure t
-  :config
-  (setq ido-enable-flex-matching t)
-  (setq ido-everywhere t)
-  (ido-mode t))
-
-(use-package smex
-  :ensure t
-  :bind ("M-x" . smex)
-  :config (smex-initialize))
-
-(use-package paredit
-  :ensure t
-  :hook
-  (emacs-lisp-mode . enable-paredit-mode)
-  (lisp-mode . enable-paredit-mode)
-  (clojure-mode . enable-paredit-mode)
-  (scheme-mode . enable-paredit-mode)
-  (eval-expression-minibuffer-setup . enable-paredit-mode))
-
-(use-package hydra
-  :ensure t)
+;; (use-package smex
+;;   :ensure t
+;;   :bind ("M-x" . smex)
+;;   :config (smex-initialize))
 
 (use-package projectile
   :ensure t
@@ -59,48 +33,10 @@
   :ensure t
   :bind ("C-c C-g" . magit))
 
-(use-package company
-  :ensure t
-  :config
-  (global-company-mode)
-  (define-key company-active-map (kbd "<return>") nil)
-  (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map (kbd "C-SPC") #'company-complete-selection)
-  (setq company-tooltip-limit 5)
-  (setq company-tooltip-align-annotations t))
-
-(use-package company-box
-  :ensure t
-  :hook (company-mode . company-box-mode))
-
-(use-package restclient
-  :ensure t)
-
 (use-package yasnippet
   :ensure t
   :config
   (yas-global-mode 1))
-
-(use-package lsp-mode
-  :ensure t
-  :init
-  (setq lsp-keymap-prefix "C-c 1")
-  (setq lsp-headerline-breadcrumb-enable nil)
-  (setq lsp-lens-enable nil)
-  (setq lsp-diagnostics-provider :none)
-  (setq lsp-gopls-server-path "~/go/bin/gopls")
-  (setq lsp-pylsp-server-path "~/.local/bin/pylsp")
-  :hook
-  (python-mode	   . lsp)
-  (rust-mode	   . lsp)
-  (typescript-mode . lsp)
-  (go-mode	   . lsp)
-  (tuareg-mode	   . lsp)
-  (clojure-mode	   . lsp)
-  (elixir-mode	   . lsp)
-  (html-mode	   . lsp)
-  (yaml-mode	   . lsp)
-  :commands lsp)
 
 (use-package ivy
   :ensure t
@@ -109,166 +45,15 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t))
 
-(use-package multiple-cursors
-  :ensure t
-  :config
-  :bind (("M-SPC" . set-rectangular-region-anchor)
-	 ("C-S-c C-S-c" . mc/edit-lines)
-	 ("C->" . mc/mark-next-like-this)
-	 ("C-:" . mc/skip-to-previous-like-this)
-	 ("C-;" . mc/skip-to-next-like-this)
-	 ("C-S-c C-<" . mc/mark-all-like-this)))
-
-(use-package emms
-  :ensure t
-  :config
-  (setq emms-show-format "Playing: %s")
-  (setq emms-source-file-default-directory "~/LeMusic")
-  (emms-all)
-  (emms-default-players))
-
-(use-package tex
-  :ensure auctex)
-
-(use-package auctex-latexmk
-  :ensure t)
-
-(use-package pdf-tools
-  :ensure t
-  :config
-  (pdf-tools-install)
-  (setq pdf-view-display-size 'fit-width)
-  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
-  (add-hook 'pdf-view-mode-hook (lambda ()
-				  (linum-mode -1)
-				  (display-line-numbers-mode -1))))
- 
-(use-package editorconfig
-  :ensure t
-  :config (editorconfig-mode t))
-
-(use-package cider
-  :ensure t)
-
-(use-package mood-line
-  :ensure t)
-
-(use-package emojify
-  :ensure t
-  :hook (after-init . global-emojify-mode)
-  :config
-  (when (member "Noto Color Emoji" (font-family-list))
-    (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
-  (setq emojify-display-style 'unicode)
-  (setq emojify-emoji-styles '(unicode)))
-
-;; lang support
-(use-package rust-mode :ensure t)
-(use-package dockerfile-mode :ensure t)
-(use-package typescript-mode :ensure t)
-(use-package lua-mode :ensure t)
-(use-package markdown-mode :ensure t)
-(use-package tuareg :ensure t) ;; ocaml mode
-(use-package go-mode :ensure t)
-(use-package git-modes :ensure t)
-(use-package clojure-mode :ensure t)
-(use-package elixir-mode :ensure t)
-(use-package yaml-mode :ensure t)
-(use-package meson-mode :ensure t)
-
-(use-package org-roam
-  :ensure t)
-
-(use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
-(use-package org-appear
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook 'org-appear-mode)
-  (setq org-appear-autolinks t)
-  (setq org-appear-autokeywords t))
-
-;;; end requires
-
-;;; primary settings
-(setq inhibit-startup-message t)
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-(setq split-width-threshold nil)
-(setq-default buffer-file-coding-system 'utf-8-unix)
-(prefer-coding-system 'utf-8)
-(setq use-short-answers t)
-
-(column-number-mode 1)
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode 1)
-
-(show-paren-mode 1)
-
-(if (daemonp)
-  (add-to-list 'default-frame-alist '(font . "Hack 14"))
-  (set-frame-font "Hack 14" nil t))
-
-(mood-line-mode)
-
-;; shit for windows (i hate this platform)
-(if (eq system-type 'windows-nt)
-  (progn
-    (add-hook 'emacs-startup-hook 'toggle-frame-maximized)
-    (setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
-    (setq shell-file-name explicit-shell-file-name)
-    (add-to-list 'exec-path "C:/Program Files/Git/bin")
-    (setq image-dired-external-viewer "C:/Program Files/nomacs/bin/nomacs.exe")
-    (with-eval-after-load 'dired
-      (define-key dired-mode-map (kbd "C-<return>") 'image-dired-dired-display-external)))
-  nil)
-
-;;; adding some hooks
-(add-hook 'dired-mode-hook 'auto-revert-mode)
-(add-hook 'kill-emacs-query-functions
-	  (lambda () (y-or-n-p "Do you really want to exit emacs?"))
-	  'append)
-
-;;; settings up styles for certain languages
-(setq tab-width 8)
-
-(setq indent-tabs-mode nil)
-(setq c-default-style "linux"
-      c-basic-offset 8)
-
-(c-set-offset 'innamespace 0)
-
-;;; setting up backups to be in the certain directory
-(setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
-(setq backup-by-copying t)
-(setq delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t)
-
-(setq create-lockfiles nil)
-
-(setq-default org-display-custom-times t)
-(setq org-time-stamp-custom-formats '("<%a %d.%m.%Y>" . "<%a %d.%m.%Y %H:%M>"))
-(setq org-hide-emphasis-markers t)
-(setq org-hidden-keywords '(title author date email))
-(setq org-startup-folded t)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" default))
- '(org-agenda-files
-   '("/home/mangl-auf/org/ipod-thinkings.org" "/home/mangl-auf/org/project-ideas.org"))
+   '("9cd57dd6d61cdf4f6aef3102c4cc2cfc04f5884d4f40b2c90a866c9b6267f2b3" "d516f1e3e5504c26b1123caa311476dc66d26d379539d12f9f4ed51f10629df3" "11cc65061e0a5410d6489af42f1d0f0478dbd181a9660f81a692ddc5f948bf34" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "3e200d49451ec4b8baa068c989e7fba2a97646091fd555eca0ee5a1386d56077" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" "4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "3c7a784b90f7abebb213869a21e84da462c26a1fda7e5bd0ffebf6ba12dbd041" "4b026ac68a1aa4d1a91879b64f54c2490b4ecad8b64de5b1865bca0addd053d9" "611ef0918b8b413badb8055089b5499c1d4ac20f1861efba8f3bfcb36ad0a448" "88cb0f9c0c11dbb4c26a628d35eb9239d1cf580cfd28e332e654e7f58b4e721b" "4363ac3323e57147141341a629a19f1398ea4c0b25c79a6661f20ffc44fdd2cb" "4c7228157ba3a48c288ad8ef83c490b94cb29ef01236205e360c2c4db200bb18" "636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" default))
  '(package-selected-packages
-   '(org-roam org-appear org-bullets meson-mode yasnippet yaml-mode restclient elixir-mode emms-setup emms cider clojure-mode cmake-mode auctex-latexmk tex auctex pdftools pdf-tools multiple-cursors git-modes mood-line go-mode doom-themes company-box lsp-mode hydra ivy paredit tuareg markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
+   '(all-the-icons neotree svelte-mode solarized-theme kaolin-themes modus-themes night-owl-theme org-roam-ui slime solidity-mode org-roam org-appear org-bullets meson-mode yasnippet restclient emms-setup emms cmake-mode auctex-latexmk tex auctex pdftools pdf-tools multiple-cursors git-modes mood-line go-mode company-box lsp-mode hydra ivy paredit markdown-mode lua-mode typescript-mode emojify use-package dockerfile-mode rust-mode editorconfig projectile magit smex russian-holidays org inkpot-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
