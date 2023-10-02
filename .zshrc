@@ -1,43 +1,27 @@
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
-
-CASE_SENSITIVE="true"
-
-# HYPHEN_INSENSITIVE="true"
-
-zstyle ':omz:update' mode reminder
-
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-HIST_STAMPS="dd.mm.yyyy"
-
-plugins=(
-    git
-    screen
-    golang
-    
-    zsh-syntax-highlighting
-)
-
-source $ZSH/oh-my-zsh.sh
-
-if [[ -z $SSH_CONNECTION ]]; then
-    export EDITOR="emacs"
-else
-    export EDITOR="vim"
-fi
-
-[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session;}
-
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
-
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 export PATH=$(go env GOPATH)/bin:$PATH
 export PATH=$HOME/.deno/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export EDITOR="vim"
+
+alias ec="emacsclient -c"
+
+zstyle ':omz:update' mode reminder
+CASE_SENSITIVE="false"
+HIST_STAMPS="dd.mm.yyyy"
+plugins=(
+    git
+    golang
+    mercurial
+    
+    zsh-syntax-highlighting
+)
+source $ZSH/oh-my-zsh.sh
+
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session; }
 
 if [ ! -S ~/.ssh/.ssh_auth_sock ]; then
     echo -n "(ssh-agent): "
@@ -46,8 +30,10 @@ if [ ! -S ~/.ssh/.ssh_auth_sock ]; then
 fi
 export SSH_AUTH_SOCK=~/.ssh/.ssh_auth_sock
 
-alias ec="emacsclient -c"
+# bun completions
+[ -s "/home/mangl-auf/.bun/_bun" ] && source "/home/mangl-auf/.bun/_bun"
 
-# opam configuration
-[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-export PATH=$PATH:/home/mangl-auf/.opam/default/bin
+# bun
+export BUN_INSTALL="$HOME/.bun"
+
+eval "$(starship init zsh)"
