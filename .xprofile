@@ -5,3 +5,4 @@ xinput set-prop '10' 'libinput Accel Speed' -1
 urxvtd -q -o -f
 xbindkeys -p
 feh --bg-scale ~/Downloads/background.jpg
+flameshot &
