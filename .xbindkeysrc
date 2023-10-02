@@ -10,5 +10,5 @@
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
        XF86AudioMute
 
-"flameshot gui"
-	Print
+"flameshot gui -r | xclip -selection clipboard -t image/png"
+       Print
