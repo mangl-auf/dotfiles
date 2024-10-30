@@ -1,8 +1,0 @@
-setxkbmap -option grp:alt_shift_toggle -layout us,ru 
-setxkbmap -option caps:swapescape
-xinput set-prop '9' 'libinput Accel Speed' -1
-xinput set-prop '10' 'libinput Accel Speed' -1
-urxvtd -q -o -f
-xbindkeys -p
-feh --bg-scale ~/Downloads/background.jpg
-flameshot &
