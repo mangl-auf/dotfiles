@@ -13,37 +13,15 @@
 
 (load "~/.emacs.d/emacs/appearance.el")
 (load "~/.emacs.d/emacs/latex.el")
-(load "~/.emacs.d/emacs/org.el")
+;(load "~/.emacs.d/emacs/org.el")
 (load "~/.emacs.d/emacs/languages.el")
-(load "~/.emacs.d/emacs/lisp.el")
+;(load "~/.emacs.d/emacs/lisp.el")
 (load "~/.emacs.d/emacs/utils.el")
-(load "~/.emacs.d/emacs/win-related.el")
-
-;; (use-package smex
-;;   :ensure t
-;;   :bind ("M-x" . smex)
-;;   :config (smex-initialize))
-
-(use-package projectile
-  :ensure t
-  :bind-keymap ("C-c p" . projectile-command-map)
-  :config (projectile-mode t))
+;(load "~/.emacs.d/emacs/win-related.el")
 
 (use-package magit
   :ensure t
   :bind ("C-c C-g" . magit))
-
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-global-mode 1))
-
-(use-package ivy
-  :ensure t
-  :config
-  (ivy-mode)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

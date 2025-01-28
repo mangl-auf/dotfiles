@@ -9,6 +9,10 @@
 (use-package meson-mode :ensure t)
 (use-package solidity-mode :ensure t)
 (use-package svelte-mode :ensure t)
+(use-package nix-mode
+  :ensure t
+  :mode "\\.nix\\'")
+
 
 (use-package editorconfig
   :ensure t

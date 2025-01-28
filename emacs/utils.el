@@ -15,9 +15,6 @@
 
 (setq create-lockfiles nil)
 
-(use-package restclient
-  :ensure t)
-
 (use-package multiple-cursors
   :ensure t
   :config
@@ -28,14 +25,14 @@
 	 ("C-;" . mc/skip-to-next-like-this)
 	 ("C-S-c C-<" . mc/mark-all-like-this)))
 
-(use-package hydra
-  :ensure t)
+;(use-package hydra
+;  :ensure t)
 
-(use-package emms
-  :ensure t
-  :config
-  (setq emms-show-format "Playing: %s")
-  (setq emms-source-file-default-directory "~/LeMusic")
-  (emms-all)
-  (emms-default-players))
+;(use-package emms
+;  :ensure t
+;  :config
+;  (setq emms-show-format "Playing: %s")
+;  (setq emms-source-file-default-directory "~/LeMusic")
+;  (emms-all)
+;  (emms-default-players))
 

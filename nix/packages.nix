@@ -1,28 +1,56 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
 {
-  nixpkgs.config = {
-	allowUnfree = true;
-  };
-
   environment.systemPackages = with pkgs; [
+    autoconf
+    automake
+    clang
+    emacs
+    file
+    findutils
+    git
+    gnumake
+    go
+    home-manager
+    htop
+    hyprshot
+    kitty
+    localsend
+    lua
+    man-pages
+    man-pages-posix
+    mpv
+    nekoray
+    # amnezia-vpn
+    libreoffice
+    neofetch
+    nodejs_22
+    pnpm
+    python313
+    plocate
+    hyprpolkitagent
+    qbittorrent
+    rlwrap
+    telegram-desktop
+    tmux
+    tree
+    udisks
+    unzip
+    vesktop
     vim
     wget
-    mpv
-    telegram-desktop
-    home-manager
-    vesktop
-    unzip
-    qbittorrent
-    localsend
-    emacs
-    nekoray
-    git
     wl-clipboard
-    kitty
+
+    # mb nado udalit' ya hz))
+    fpc
+    sbcl
   ];
 
   fonts.packages = with pkgs; [
-
+    jetbrains-mono
+    noto-fonts
+    nerdfonts
+    material-icons
+    font-awesome
   ];
 }
