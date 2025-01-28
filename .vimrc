@@ -7,6 +7,7 @@ set synmaxcol=1024
 
 set autoindent
 set smartindent
+set expandtab
 
 set shiftwidth=4
 set tabstop=4
