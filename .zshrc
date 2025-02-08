@@ -1,4 +1,12 @@
-alias ec="emacsclient -c"
+export EDITOR='/usr/bin/vim'
+export SUDO_EDITOR=$EDITOR
+
+bindkey -e
+
+alias ec='emacsclient -c'
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 
 setopt PROMPT_SUBST
 PROMPT=$'%F{99}%n%f %{\x1b[3m%}at%{\x1b[0m%} %F{63}%~/%f %# '
