@@ -12,17 +12,25 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 
+set mouse=a
+
 set ignorecase
 set smartcase
 set hlsearch
 
+set numberwidth=4
 set rnu
 
-set t_Co=88
-colorscheme desert
+set t_Co=256
+colorscheme habamax
+set termguicolors
+" colorscheme quiet | retrobox
+
+set splitbelow
+set splitright
+set whichwrap+=<>[]hl
+
+set cursorline
+set cursorlineopt=number
 
 highlight EndOfBuffer ctermfg=black ctermbg=black
-
-" if vim is manpager, then pressing on q will quit vim
-" otherwise q works as usual (write marco)
-nnoremap <expr> q &ma ? "q" : ":q\<CR>"
