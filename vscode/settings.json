@@ -1,0 +1,21 @@
+{
+    "editor.smoothScrolling": true,
+    "window.titleBarStyle": "custom",
+    "editor.fontSize": 19,
+    "editor.fontFamily": "'UbuntuMono Nerd Font'",
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "chat.commandCenter.enabled": false,
+    "editor.lineNumbers": "relative",
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.renderLineHighlight": "all",
+    "workbench.sideBar.location": "right",
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "workbench.activityBar.location": "hidden",
+    "window.menuBarVisibility": "toggle",
+    "workbench.navigationControl.enabled": false,
+    "workbench.layoutControl.enabled": false
+}

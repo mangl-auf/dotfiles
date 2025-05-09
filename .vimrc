@@ -22,9 +22,10 @@ set numberwidth=4
 set rnu
 
 set t_Co=256
-colorscheme habamax
+colorscheme habamax " | retrobox | sorbet
 set termguicolors
-" colorscheme quiet | retrobox
+" colorscheme quiet > for plain text
+" colorscheme torte > for transparent bg
 
 set splitbelow
 set splitright

@@ -1,3 +1,6 @@
+[[ -f ~/.zprofile ]] && . ~/.zprofile
+[[ -f ~/.zshenv ]] && . ~/.zshenv
+
 export EDITOR='/usr/bin/vim'
 export SUDO_EDITOR=$EDITOR
 
@@ -22,7 +25,9 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+zmodload zsh/complist
 autoload -Uz compinit && compinit
+autoload -Uz colors && colors
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 autoload -Uz select-word-style && select-word-style bash
@@ -35,3 +40,4 @@ if [ ! -S ~/.ssh/.ssh_auth_sock ]; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/.ssh_auth_sock
 fi
 export SSH_AUTH_SOCK=~/.ssh/.ssh_auth_sock
+
