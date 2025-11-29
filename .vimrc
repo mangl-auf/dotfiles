@@ -1,22 +1,27 @@
 " simpliest vimrc
 
+syntax on
+filetype plugin indent on
+
+runtime macros/matchit.vim
+
 set nocompatible
 set encoding=utf-8
-syntax on
 set synmaxcol=1024
 
 set autoindent
-set smartindent
 set expandtab
-
 set shiftwidth=4
 set tabstop=4
+
+set wildmenu
 
 set mouse=a
 
 set ignorecase
 set smartcase
 set hlsearch
+set incsearch
 
 set numberwidth=4
 set rnu
